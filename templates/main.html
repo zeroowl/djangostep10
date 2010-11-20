@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+{% if user.is_authenticated %}
+ Добро пожаловать {{ user.username }}   last logget at {{ user.last_login }}  <a href="{{logouturl}}"> выйти</a>
+<br>
+ <a href="/showMyResults"> Посмотреть историю своих ответов</a>
+{% else %}
+ <a href="{{loginurl}}">войти</a>
+{% endif %}
+<p>
+Форма ответа на вопрросы 10 Шага .
+
+</p>
+ <form action="/saveResults/" method="post" >
+
+     {% include "submit.html" %}
+ {% for question in questions %}
+ <br>
+     {% ifequal question.type.type_name 'bool' %}
+<FIELDSET>
+  <LEGEND>{{ question.text }}</LEGEND>
+
+  <INPUT name="{{question.field_id}}"
+         type="radio"
+         value="Yes" >Да
+  <INPUT name="{{question.field_id}}"
+         type="radio"
+         value="No" >Нет
+
+
+ </FIELDSET>
+     {% else %}
+       <FIELDSET>
+  <LEGEND>{{ question.text }}</LEGEND>
+
+      <textarea name = "{{question.field_id}}" COLS=40 ROWS=6 ></TEXTAREA>
+ </FIELDSET>
+     {% endifequal %}
+ {% endfor %}
+
+{% include "submit.html" %}
+</form>
+{% endblock %}
