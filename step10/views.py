@@ -1,16 +1,29 @@
 # Create your views here.
 from django.shortcuts import render_to_response
 from step10.models import *
-
+from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponseRedirect
+import settings
+from django.template.context import RequestContext
 
 
 def mainView(request):
-    user = request.user
-    
-    loginurl = '/login/'
-    logouturl = '/logout/'
     questions = Question.objects.all()
-    return render_to_response('main.html', locals())
+    logouturl = settings.LOGOUT_URL
+    loginurl = settings.LOGIN_URL
+    return render_to_response('main.html', locals(),context_instance=RequestContext(request))
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            new_user = form.save()
+            return HttpResponseRedirect("/")
+    else:
+        form = UserCreationForm()
+    return render_to_response("registration/register.html", {
+        'form': form,
+    })
 
 def saveResults(request):
     elements_to_save = []
