@@ -19,5 +19,6 @@ admin.site.register(Question)
 admin.site.register(QuestionType)
 admin.site.register(AnswerSet)
 admin.site.register(SavedAnswer)
+admin.site.register(QuestionSet)
 __author__ = 'zeroowl'
   

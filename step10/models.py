@@ -8,11 +8,19 @@ class QuestionType(models.Model):
     def __unicode__(self):
         return self.type_name
 
+class QuestionSet(models.Model):
+    name = models.TextField(max_length=128)
+
+    def __unicode__(self):
+        return self.name
+
 class  Question(models.Model):
     text = models.TextField(max_length=128)
     type = models.ForeignKey(QuestionType)
+    question_set = models.ForeignKey(QuestionSet,)
+    
     def __unicode__(self):
-         return u'%s | %s' % (self.text, self.type)
+         return u'(%s) %s | %s' % (self.question_set.name,self.text, self.type)
 
     def field_id(self):
         return "ID_%s" % (self.id,)
