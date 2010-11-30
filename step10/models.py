@@ -29,11 +29,16 @@ class AnswerSet(models.Model):
     date = models.DateField(auto_now_add= True)
     author = models.ForeignKey(User)
     count  = models.IntegerField(null = True)
+    def __unicode__(self):
+        return "%s(%d) at %s" % (self.author.username,self.count,str(self.date))
+
 
 class SavedAnswer(models.Model):
     answer_set = models.ForeignKey(AnswerSet)
     question = models.ForeignKey(Question)
     answer = models.TextField()
+    def __unicode__(self):
+        return "%s:%s " % (self.question.text,self.answer[:50])
 
 #class AnswerSet(db.Model):
 #    date = db.DateTimeProperty(auto_now_add=True)

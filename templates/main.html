@@ -1,12 +1,18 @@
 {% extends "base.html" %}
+
+{%  block header %}
+ <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+  <script>
+  $(document).ready(function() {
+    $("#accordion").accordion({ header: 'h2' ,icons: { 'header': 'ui-icon-plus', 'headerSelected': 'ui-icon-minus' }});
+  });
+  </script>
+{% endblock %}
+
 {% block content %}
-{% if user.is_authenticated %}
- Добро пожаловать {{ user.username }}   last logget at {{ user.last_login }}  <a href="{{logouturl}}"> выйти</a>
-<br>
- <a href="/showMyResults"> Посмотреть историю своих ответов</a>
-{% else %}
- <a href="{{loginurl}}">войти</a>
-{% endif %}
 <p>
 Форма ответа на вопрросы 10 Шага .
 
@@ -14,8 +20,10 @@
  <form action="/saveResults/" method="post" >
 
      {% include "submit.html" %}
+<div id="accordion">
  {% for question in questions %}
- <br>
+<h2 class="accordion_h2"><a href="#">{{ question.text }}</a></h2>
+<div>
      {% ifequal question.type.type_name 'bool' %}
 <FIELDSET>
   <LEGEND>{{ question.text }}</LEGEND>
@@ -36,7 +44,9 @@
       <textarea name = "{{question.field_id}}" COLS=40 ROWS=6 ></TEXTAREA>
  </FIELDSET>
      {% endifequal %}
+</div>
  {% endfor %}
+</div>
 
 {% include "submit.html" %}
 </form>

@@ -5,20 +5,37 @@
 <head>
     <link rel="stylesheet" href="/static/style.css" />
     <title>{% block title %}{% trans "page-title" %}{% endblock %}  </title>
+{% block header %} {% endblock %}
 </head>
 
 <body>
-    <div id="sidebar">
-        {% block sidebar %}
-        <ul>
-            <li><a href="/">{% trans "main_page" %}</a></li>
-            <li><a href="/showMyResults">{% trans "show_my_results" %}</a></li>
-        </ul>
+    <div id="login">
+        {% block login_block %}
+{% if user.is_authenticated %}
+ Добро пожаловать {{ user.username }} <a href="{{logouturl}}"> выйти</a>
+<br>
+{% else %}
+ <a href="{{loginurl}}">войти</a>
+{% endif %}            
         {% endblock %}
     </div>
-
     <div id="content">
         {% block content %}{% endblock %}
     </div>
+
+    <div id="sidebar">
+        Навигация:
+        <br>
+        {% if user.is_authenticated %}
+         <a href="/showMyResults"> Посмотреть историю ответов</a>
+        {% endif %}
+
+    </div>
+
+    <div id="footer">
+        {% block footer %}<br> Разработка <a href="http://www.zeroowl.com">Zer0wL</a> {% endblock %}
+    </div>
+
+
 </body>
 </html>

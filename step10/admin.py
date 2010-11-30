@@ -13,11 +13,18 @@ from step10.models import *
 #    fields = ('title', 'authors', 'publisher', 'publication_date')
 #    filter_horizontal = ('authors',)
 #    raw_id_fields = ('publisher',)
+class SavedAnswerInline(admin.StackedInline):
+    model = SavedAnswer
+    #extra = 15
+
+class AnswerSetAdmin(admin.ModelAdmin):
+    inlines = [SavedAnswerInline]
+    list_display   = ('date', 'author', 'count')
 
 
 admin.site.register(Question)
 admin.site.register(QuestionType)
-admin.site.register(AnswerSet)
+admin.site.register(AnswerSet,AnswerSetAdmin)
 admin.site.register(SavedAnswer)
 admin.site.register(QuestionSet)
 __author__ = 'zeroowl'

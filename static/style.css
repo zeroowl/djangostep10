@@ -7,18 +7,70 @@ body {
 }
 
 #sidebar {
-  position : absolute;
-  left : 0;
-  width : 150px;
-  margin-left : 10px;
-  margin-top : 20px;
-  color : #000000;
-  padding : 3px;
+    background-color: #f0f0f0;
+    background-position: 15px center;
+    background-repeat: no-repeat;
+/*    color: #DBDBDA; */
+    font-weight: bold;
+    padding: 4px 20px 12px 40px;
+    position: fixed;
+    left: 0px;
+    top: 0;
+    width: 108px;
+    z-index: 99998;
+    border-radius-bottomleft: 15px;
+    border-radius-bottomright: 15px;
+    -moz-border-radius-bottomleft: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -webkit-border-radius: 0 0 10px 10px;
+    border-top-left-radius: 0px 0px;
+    border-top-right-radius: 0px 0px;
+    border-bottom-right-radius: 10px 10px;
+    border-bottom-left-radius: 10px 10px;
 }
 
 #content {
   top : 0;
-  margin : 0 25% 0 165px;
+  margin : 0 5% 0 165px;
   padding : 3px;
   color : #000000;
+}
+
+#footer {
+    bottom:0;
+    top:20;
+    margin : 0 5% 0 5%;
+    padding : 3px;
+    background: #292E35;
+    color: white;
+}
+
+#accordion_h2 {
+    height:10px;
+    font-size:small;
+
+}
+
+/* This is floating login/logout at right  */
+#login {
+background-color: #57554E;
+background-position: 15px center;
+background-repeat: no-repeat;
+color: #DBDBDA;
+font-weight: bold;
+padding: 4px 20px 12px 40px;
+position: fixed;
+right: 10px;
+top: 0;
+width: 245px;
+z-index: 99998;
+border-radius-bottomleft: 15px;
+border-radius-bottomright: 15px;
+-moz-border-radius-bottomleft: 10px;
+-moz-border-radius-bottomright: 10px;
+-webkit-border-radius: 0 0 10px 10px;
+border-top-left-radius: 0px 0px;
+border-top-right-radius: 0px 0px;
+border-bottom-right-radius: 10px 10px;
+border-bottom-left-radius: 10px 10px;
 }
