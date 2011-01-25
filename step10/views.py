@@ -59,3 +59,7 @@ def saveResults(request):
 
 
     return HttpResponseRedirect("/")
+
+
+def about(request):
+    return render_to_response('about.html', locals(),context_instance=RequestContext(request))
