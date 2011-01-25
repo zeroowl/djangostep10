@@ -18,7 +18,7 @@ def showMyResults(request):
     loginurl = settings.LOGIN_URL
     graph_values = []
     graph_lebels = []
-    answer_sets = AnswerSet.objects.all()
+    answer_sets = AnswerSet.objects.filter(author = request.user)
     for answer_set in answer_sets:
         graph_lebels.append(answer_set.date)
         graph_values.append(answer_set.count)
