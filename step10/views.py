@@ -5,7 +5,14 @@ from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
 import settings
 from django.template.context import RequestContext
+from django import forms
+from django.utils.translation import ugettext_lazy as _
 
+
+class MyUserCreationForm(UserCreationForm):
+    email = forms.RegexField(label=_("Email"), max_length=30, regex=r'^[\w.@+-]+$',
+        help_text = _("Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only."),
+        error_messages = {'invalid': _("This value may contain only letters, numbers and @/./+/-/_ characters.")})
 
 def mainView(request):
     questions = Question.objects.all()
@@ -27,12 +34,15 @@ def showMyResults(request):
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = MyUserCreationForm(request.POST)
         if form.is_valid():
             new_user = form.save()
+            new_user.get_profile().email = form.cleaned_data['email']
+            #print(dir(form))
+            new_user.get_profile().save()
             return HttpResponseRedirect("/")
     else:
-        form = UserCreationForm()
+        form = MyUserCreationForm()
     return render_to_response("registration/register.html", {
         'form': form,
     })

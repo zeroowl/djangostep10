@@ -27,13 +27,14 @@
         Навигация:
         <a href="/">Главная</a>
         <br>
+        <br> <a href="/about/">О чем это ?</a>
+        <br> 
         {% if user.is_authenticated %}
          <br><a href="/showMyResults"> Посмотреть историю ответов</a>
           {%  if user.is_staff %}
               <br><a href="/admin/"> Админка</a>
           {%  endif %}
         {% endif %}
-        <br> <a href="/about/">О чем это ?</a>
     </div>
 
     <div id="footer">

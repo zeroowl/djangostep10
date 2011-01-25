@@ -1,0 +1,7 @@
+Вы запросили регистрацию на сайте www.step10.org
+
+для активации вашей записи вы можете пройти по аддресу
+
+<a href="www.step10.org/accounts/activate/{{activation_key}}">www.step10.org/accounts/activate/{{activation_key}}</a>
+
+Администрация сайта www.step10.org
