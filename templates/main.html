@@ -14,9 +14,7 @@
   {
      
       document.mainform[name].value = val;
-      var active = $( "#accordion" ).accordion( "option", "active" );
-      alter(active);
-      // Start timer...
+      document.mainform[name].focus()
       return true;
   }
   </script>
