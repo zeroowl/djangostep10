@@ -9,6 +9,16 @@
   $(document).ready(function() {
     $("#accordion").accordion({ header: 'h2' ,icons: { 'header': 'ui-icon-plus', 'headerSelected': 'ui-icon-minus' }});
   });
+
+  function selected(name,val)
+  {
+     
+      document.mainform[name].value = val;
+      var active = $( "#accordion" ).accordion( "option", "active" );
+      alter(active);
+      // Start timer...
+      return true;
+  }
   </script>
 {% endblock %}
 
@@ -17,33 +27,33 @@
 Форма ответа на вопрросы 10 Шага .
 
 </p>
- <form action="/saveResults/" method="post" >
+ <form name="mainform" action="/saveResults/" method="post" >
 
      {% include "submit.html" %}
 <div id="accordion">
  {% for question in questions %}
 <h2 class="accordion_h2"><a href="#">{{ question.text }}</a></h2>
 <div>
+    <FIELDSET>
      {% ifequal question.type.type_name 'bool' %}
-<FIELDSET>
   <!-- <LEGEND>{{ question.text }}</LEGEND> -->
 
-  <INPUT name="{{question.field_id}}"
-         type="radio"
-         value="Да" >Да
-  <INPUT name="{{question.field_id}}"
-         type="radio"
-         value="Нет" >Нет
+  <INPUT name="y{{question.field_id}}"
+         type="button"
+         value="Да" onclick="selected('{{question.field_id}}','Да')">
+  <INPUT name="n{{question.field_id}}"
+         type="button"
+         value="Нет" onclick="selected('{{question.field_id}}','Нет')">
+<br>
+         <textarea name = "{{question.field_id}}" COLS=40 ROWS=6 ></TEXTAREA>
 
-
- </FIELDSET>
      {% else %}
-       <FIELDSET>
-  <LEGEND>{{ question.text }}</LEGEND>
+  <!-- <LEGEND>{{ question.text }}</LEGEND> -->
 
       <textarea name = "{{question.field_id}}" COLS=40 ROWS=6 ></TEXTAREA>
- </FIELDSET>
      {% endifequal %}
+    </FIELDSET>
+
 </div>
  {% endfor %}
 </div>

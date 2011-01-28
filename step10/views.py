@@ -15,7 +15,7 @@ class MyUserCreationForm(UserCreationForm):
         error_messages = {'invalid': _("This value may contain only letters, numbers and @/./+/-/_ characters.")})
 
 def mainView(request):
-    questions = Question.objects.all()
+    questions = Question.objects.filter(question_set='1').order_by("id")
     logouturl = settings.LOGOUT_URL
     loginurl = settings.LOGIN_URL
     return render_to_response('main.html', locals(),context_instance=RequestContext(request))
