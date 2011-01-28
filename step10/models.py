@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import re
 
 # Create your models here.
 
@@ -24,6 +25,10 @@ class  Question(models.Model):
 
     def field_id(self):
         return "ID_%s" % (self.id,)
+
+    def male_text(self):
+        return re.sub('\(\w*\)','',self.text)
+
 
 class AnswerSet(models.Model):
     date = models.DateField(auto_now_add= True)

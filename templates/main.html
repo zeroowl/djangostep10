@@ -30,7 +30,7 @@
      {% include "submit.html" %}
 <div id="accordion">
  {% for question in questions %}
-<h2 class="accordion_h2"><a href="#">{{ question.text }}</a></h2>
+<h2 class="accordion_h2"><a href="#">{{ question.male_text }}</a></h2>
 <div>
     <FIELDSET>
      {% ifequal question.type.type_name 'bool' %}
