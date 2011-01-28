@@ -27,7 +27,7 @@ class  Question(models.Model):
         return "ID_%s" % (self.id,)
 
     def male_text(self):
-        return re.sub('\(\w*\)','',self.text)
+        return re.sub('\([^)]*\)','',self.text)
 
 
 class AnswerSet(models.Model):
