@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="b-login b-block">
+    <div class="block__title">
+        Авторизация/Регистрация
+    </div>
+    <ul class="login__providers">
+        <li><a href="{% url publicauth-begin 'google' %}?openid_url=https://www.google.com/accounts/o8/id&next={{ request.GET.next }}">Google.com</a></li>
+        <li><a href="{% url publicauth-begin 'openid' %}?openid_url=http://yandex.ru/&next={{ request.GET.next }}">Yandex.ru</a></li>
+        <li><a href="{% url publicauth-begin 'openid' %}?openid_url=http://rambler.ru/&next={{ request.GET.next }}">Rambler.ru</a></li>
+        <li><a href="{% url publicauth-begin 'openid' %}?openid_url=http://yahoo.com/&next={{ request.GET.next }}">Yahoo.com</a></li>
+        <li><a href="{% url publicauth-begin 'twitter' %}?next={{ request.GET.next }}">Twitter.com</a></li>
+        <li><a href="{% url publicauth-begin 'friendfeed' %}?next={{ request.GET.next }}">Friendfeed.com</a></li>
+        <li><a onclick="return fb_login();" href="#">Facebook.com</a></li>
+        <li><a onclick="return vk_login();" href="#">Вконтакте.ru</a></li>
+    </ul>
+
+    <div class="login__width login__openurl">
+        <form action="{% url publicauth-begin 'openid' %}?next={{ request.GET.next }}" method="post">
+            <label>OpenID URL:</label>
+            <input name="openid_url" type="text" class="b-field-text"/>
+            <input class="b-button" type="submit" value="проникнуть в сайт">
+            <div class="login__hint">Укажите адрес вашего OpenID провайдера.</div>
+        </form>
+    </div>
+    <div class="login__about">
+        Если Вы не зарегистрированы ни на одном из этих сайтов,
+        Вы можете создать себе уникальный интернет-идентификатор на сайте
+        <a href="http://openid.net/">OpenID.net</a>. Это быстро, удобно и бесплатно.
+        После регистрации Вы сможете входить на многие интернет-ресурсы без дополнительной
+        регистрации и запоминания кучи паролей.
+
+        <div class="login__title">Используемые технологии </div>
+        <ul>
+            <li>OpenID - yandex.ru, rambler.ru, yahoo.ru, google.com, mail.ru</li>
+            <li>OAuth - twitter.com, friendfeed.com</li>
+            <li>Facebook - facebook.com</li>
+        </ul>
+    </div>
+</div>
+<script src="http://vkontakte.ru/js/api/openapi.js" type="text/javascript" charset="windows-1251"></script>
+<script type="text/javascript">
+VK.init({
+    apiId: 1862601,
+    nameTransportPath: '{% url publicauth-vkontakte-xdreceiver %}'
+});
+
+function vk_login() {
+    VK.Auth.login(testMe);
+    return false;
+}
+
+function testMe(response) {
+    if (response.status == "connected") {
+        window.location = "{% url publicauth-complete 'vkontakte' %}"
+    }
+};
+</script>
+<script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php"></script>
+<script type="text/javascript">
+    FB.init("{{ request.facebook.api_key }}", "{% url publicauth-facebook-xdreceiver %}");
+
+    function fb_login() {
+        FB.Connect.requireSession(function(test) {
+            window.location = "{% url publicauth-complete 'facebook' %}?next={{ request.GET.next }}";
+        });
+        return false;
+    }
+</script>
+
+{% endblock %}

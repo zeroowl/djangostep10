@@ -37,6 +37,7 @@ urlpatterns = patterns('',
     (r'^accounts/', include('registration.urls')),
     (r'^answersets/$', date_based.archive_index, answer_set_info),
     (r'^$',views.mainView),
+    url(r'^auth/', include('publicauth.urls')),
 )
 
 #    application = webapp.WSGIApplication([('/', MainHandler),

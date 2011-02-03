@@ -14,7 +14,7 @@ __author__ = 'zeroowl'
 
 
 # TODO m/f showing....
-# TODO Logo/favicon
+# TO-DO Logo/favicon
 # TODO On Yes/No click timer with moving accordion next
 # TODO Questions management part 1 allow to disable questions in question set per user
 # TODO Questions management part 2 allow to create/use different question_set
