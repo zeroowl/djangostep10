@@ -1,4 +1,5 @@
 # Create your views here.
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
 from step10.models import *
 from django.contrib.auth.forms import UserCreationForm
@@ -7,6 +8,7 @@ import settings
 from django.template.context import RequestContext
 from django import forms
 from django.utils.translation import ugettext_lazy as _
+import gviz_api
 
 
 class MyUserCreationForm(UserCreationForm):
@@ -20,6 +22,7 @@ def mainView(request):
     loginurl = settings.LOGIN_URL
     return render_to_response('main.html', locals(),context_instance=RequestContext(request))
 
+@login_required
 def showMyResults(request):
     logouturl = settings.LOGOUT_URL
     loginurl = settings.LOGIN_URL
@@ -29,6 +32,21 @@ def showMyResults(request):
     for answer_set in answer_sets:
         graph_lebels.append(answer_set.date)
         graph_values.append(answer_set.count)
+
+    description = {"date": ("string", "Date"),
+               "count": ("number", "Count")}
+    data = []
+    for answer_set in answer_sets:
+        data.append({"date":answer_set.date,"count":answer_set.count})
+    print data
+    # Loading it into gviz_api.DataTable
+    data_table = gviz_api.DataTable(description)
+    data_table.LoadData(data)
+
+    # Creating a JSon string
+    json = data_table.ToJSon(columns_order=("date", "count"),
+                           order_by="date")
+
     return render_to_response('myresults.html', locals(),context_instance=RequestContext(request))
 
 
@@ -47,6 +65,7 @@ def register(request):
         'form': form,
     })
 
+@login_required
 def saveResults(request):
     elements_to_save = []
     answer_set = AnswerSet()

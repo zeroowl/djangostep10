@@ -31,6 +31,7 @@
 {% else %}
  <a href="{{loginurl}}">войти</a>
  <a href="/accounts/register/">регистрация</a>
+
 {% endif %}            
         {% endblock %}
     </div>
@@ -54,10 +55,10 @@
           {%  endif %}
         {% endif %}
     </div>
-
+<p><p><p><p>
     <div id="footer">
         {% block footer %}<br> Разработка <a href="http://www.zeroowl.com">Zer0wL</a> {% endblock %}
-    <a href="{% url publicauth-login %}">publi_login</a>
+    
     </div>
 
 

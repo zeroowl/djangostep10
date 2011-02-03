@@ -11,7 +11,8 @@
         <li><a href="{% url publicauth-begin 'openid' %}?openid_url=http://rambler.ru/&next={{ request.GET.next }}">Rambler.ru</a></li>
         <li><a href="{% url publicauth-begin 'openid' %}?openid_url=http://yahoo.com/&next={{ request.GET.next }}">Yahoo.com</a></li>
         <li><a href="{% url publicauth-begin 'twitter' %}?next={{ request.GET.next }}">Twitter.com</a></li>
-        <li><a href="{% url publicauth-begin 'friendfeed' %}?next={{ request.GET.next }}">Friendfeed.com</a></li>
+<!--        <li><a href="{% url publicauth-begin 'friendfeed' %}?next={{ request.GET.next }}">Friendfeed.com</a></li>
+-->
         <li><a onclick="return fb_login();" href="#">Facebook.com</a></li>
         <li><a onclick="return vk_login();" href="#">Вконтакте.ru</a></li>
     </ul>
@@ -24,7 +25,7 @@
             <div class="login__hint">Укажите адрес вашего OpenID провайдера.</div>
         </form>
     </div>
-    <div class="login__about">
+    <div  >
         Если Вы не зарегистрированы ни на одном из этих сайтов,
         Вы можете создать себе уникальный интернет-идентификатор на сайте
         <a href="http://openid.net/">OpenID.net</a>. Это быстро, удобно и бесплатно.
@@ -37,6 +38,26 @@
             <li>OAuth - twitter.com, friendfeed.com</li>
             <li>Facebook - facebook.com</li>
         </ul>
+    </div>
+    <div class="login">
+        <form method="post" action="{% url django.contrib.auth.views.login %}">
+{% csrf_token %}
+            AA
+<table>
+<tr>
+    <td>{{ form.username.label_tag }}</td>
+    <td>{{ form.username }}</td>
+</tr>
+<tr>
+    <td>{{ form.password.label_tag }}</td>
+    <td>{{ form.password }}</td>
+</tr>
+</table>
+
+<input type="submit" value="login" />
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+<a href="/accounts/register/">register</a>
     </div>
 </div>
 <script src="http://vkontakte.ru/js/api/openapi.js" type="text/javascript" charset="windows-1251"></script>
