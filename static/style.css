@@ -41,7 +41,7 @@ body {
     top:20;
     margin : 0 5% 0 5%;
     padding : 3px;
-    background: #292E35;
+    background: #0080FF;
     color: white;
 }
 
@@ -53,7 +53,7 @@ body {
 
 /* This is floating login/logout at right  */
 #login {
-background-color: #57554E;
+background-color: #0080FF;
 background-position: 15px center;
 background-repeat: no-repeat;
 color: #DBDBDA;
