@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <h1>Регистрация <span>[шаг 2]</span></h1>
+    <h4> Пожалуйста, заполните дополнительные поля необходимые для завершения регистрации.  </h4>
+
+        <form action="." method="post">
+            {{ form.as_p }}
+            <div class="login__btn">
+                <input class="b-button" type="submit" value="проникнуть в сайт">
+            </div>
+        </form>
+{% endblock %}
