@@ -33,12 +33,12 @@
          <li><a href="{% url publicauth-begin 'openid' %}?openid_url=http://rambler.ru/&next={{ request.GET.next }}">Rambler.ru</a></li>
          <li><a href="{% url publicauth-begin 'openid' %}?openid_url=http://yahoo.com/&next={{ request.GET.next }}">Yahoo.com</a></li>
          <li><a href="{% url publicauth-begin 'twitter' %}?next={{ request.GET.next }}">Twitter.com</a></li>
+         <li><a onclick="return vk_login();" href="#">Вконтакте.ru</a></li>
 
         <p>Эти что-то пока не работают, но скоро :)
  <!--        <li><a href="{% url publicauth-begin 'friendfeed' %}?next={{ request.GET.next }}">Friendfeed.com</a></li>
  -->
          <li><a onclick="#return fb_login();" href="#">Facebook.com</a></li>
-         <li><a onclick="#return vk_login();" href="#">Вконтакте.ru</a></li>
      </ul>
 
 

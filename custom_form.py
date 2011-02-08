@@ -11,14 +11,14 @@ from annoying.functions import get_object_or_None
 
 
 class ExtraForm(ExtraForm):
-    first_name = forms.CharField(max_length=255)
-    last_name = forms.CharField(max_length=255)
-    email = forms.EmailField(max_length=255)
+    first_name = forms.CharField(max_length=255,label='Имя')
+    last_name = forms.CharField(max_length=255,label='Фамилия')
+    email = forms.EmailField(max_length=255,label='E-mail')
 
     def clean_username(self):
         username = self.cleaned_data['username']
-        if not re.match(r"^[a-z\d\-_]{3,}$", username):
-            raise forms.ValidationError(u"Логин не соответствует маске! Используемое регулярное выражение: r'^[a-z\d\-_]{3,}$'")
+        if not re.match(r"^[a-zA-Z\d\-_]{3,}$", username):
+            raise forms.ValidationError(u"Логин не соответствует маске! Используемое регулярное выражение: r'^[a-zA-Z\d\-_]{3,}$'")
         if get_object_or_None(User, username=username):
             raise forms.ValidationError(u"Данное имя уже занято.")
         return username
