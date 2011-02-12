@@ -1,5 +1,6 @@
 User-agent: *
 Disallow: /auth/
 Disallow: /auth/facebook-xdreceiver/
+Disallow: /auth/vkontakte-xdreceiver/
 Disallow: /static/
 Disallow: /media/
