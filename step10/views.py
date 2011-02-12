@@ -63,7 +63,7 @@ def register(request):
         form = MyUserCreationForm()
     return render_to_response("registration/register.html", {
         'form': form,
-    })
+    },context_instance=RequestContext(request))
 
 @login_required
 def saveResults(request):

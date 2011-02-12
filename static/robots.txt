@@ -1,4 +1,5 @@
 User-agent: *
 Disallow: /auth/
+Disallow: /auth/facebook-xdreceiver/
 Disallow: /static/
 Disallow: /media/
