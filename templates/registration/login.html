@@ -3,7 +3,7 @@
 {% block content %}
 
 {% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
+<p>Ваш пароль неверен попробуйте еще раз.</p>
 {% endif %}
 
 <form method="post" action="{% url django.contrib.auth.views.login %}">
@@ -19,10 +19,10 @@
 </tr>
 </table>
 
-<input type="submit" value="login" />
+<input type="submit" value="Войти" />
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
-<a href="/accounts/register/">register</a>
+<a href="/accounts/register/">Зарегестрируйтесь</a>
 
 
    <p> Войти используя свою запись на одном из популярных серверов.
@@ -34,11 +34,8 @@
          <li><a href="{% url publicauth-begin 'openid' %}?openid_url=http://yahoo.com/&next={{ request.GET.next }}">Yahoo.com</a></li>
          <li><a href="{% url publicauth-begin 'twitter' %}?next={{ request.GET.next }}">Twitter.com</a></li>
          <li><a onclick="return vk_login();" href="#">Вконтакте.ru</a></li>
-
-        <p>Эти что-то пока не работают, но скоро :)
- <!--        <li><a href="{% url publicauth-begin 'friendfeed' %}?next={{ request.GET.next }}">Friendfeed.com</a></li>
- -->
-         <li><a onclick="#return fb_login();" href="#">Facebook.com</a></li>
+         <li><a onclick="return fb_login();" href="#">Facebook.com</a></li>
+ 
      </ul>
 
 
@@ -58,7 +55,7 @@ function testMe(response) {
     if (response.status == "connected") {
         window.location = "{% url publicauth-complete 'vkontakte' %}"
     }
-};
+}
 </script>
 <script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php"></script>
 <script type="text/javascript">

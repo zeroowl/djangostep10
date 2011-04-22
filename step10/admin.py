@@ -21,6 +21,7 @@ class AnswerSetAdmin(admin.ModelAdmin):
     inlines = [SavedAnswerInline]
     list_display   = ('date', 'author', 'count')
 
+#admin.autodiscover()
 
 admin.site.register(Question)
 admin.site.register(QuestionType)

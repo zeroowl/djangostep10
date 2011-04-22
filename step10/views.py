@@ -74,7 +74,7 @@ def saveResults(request):
     for param in request.POST.items():
         field_id = param[0]
         field_value = param[1]
-        if field_id.startswith('ID_') and field_value != None and len(field_value)>0:
+        if field_id.startswith('ID_') and field_value is not None and len(field_value)>0:
             id = field_id.split('_')[1]
             answer = SavedAnswer()
             answer.answer_set = answer_set
