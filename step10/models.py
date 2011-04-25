@@ -35,7 +35,7 @@ class AnswerSet(models.Model):
     author = models.ForeignKey(User)
     count  = models.IntegerField(null = True)
     def __unicode__(self):
-        return "%s(%d) at %s" % (self.author.username,self.count,str(self.date))
+        return "%s(%s) at %s" % (self.author.username,self.count,str(self.date))
 
 
 class SavedAnswer(models.Model):

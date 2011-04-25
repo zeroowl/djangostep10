@@ -5,7 +5,6 @@ import re
 from django.contrib.auth.models import User
 from django import forms
 
-from publicauth.forms import ExtraForm
 from publicauth.models import PublicID
 from annoying.functions import get_object_or_None
 
